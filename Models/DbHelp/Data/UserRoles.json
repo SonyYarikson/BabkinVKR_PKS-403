@@ -1,0 +1,10 @@
+[
+  {
+    "RoleID": "383f3a8d-cef8-439b-8685-94f29e4d9c15",
+    "RoleName": "admin"
+  },
+  {
+    "RoleID": "fc492d2d-1740-4987-a660-d64d23d0d0ba",
+    "RoleName": "user"
+  }
+]

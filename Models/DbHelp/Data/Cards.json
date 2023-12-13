@@ -1,0 +1,17 @@
+[
+  {
+    "CardID": "d92e557f-7447-4756-9a2a-790555d598cf",
+    "CardName": "Начало",
+    "BoardID": "728b8a99-4b2f-4e78-b7da-1ce9f7269051"
+  },
+  {
+    "CardID": "dca19590-75d0-4216-ae2b-e6230d5dfa0e",
+    "CardName": "Середина",
+    "BoardID": "728b8a99-4b2f-4e78-b7da-1ce9f7269051"
+  },
+  {
+    "CardID": "eaeaf80d-9f35-402c-806b-2d82442a08d3",
+    "CardName": "Конец",
+    "BoardID": "728b8a99-4b2f-4e78-b7da-1ce9f7269051"
+  }
+]

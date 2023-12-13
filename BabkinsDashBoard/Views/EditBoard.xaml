@@ -1,0 +1,56 @@
+﻿<Page x:Class="BabkinsDashBoard.Views.EditBoard"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BabkinsDashBoard.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditBoard" Background="White" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition>
+            </RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+           
+            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                <ItemsControl x:Name="KanbanBoardItemsControl" >
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{Binding CardName}" Grid.Row="0" x:Name="CardNametb"/>
+                                <Button x:Name="AddRow" Height="20" Width="150" Content="+" Grid.Row="2" Click="AddRow_Click"/>
+                                <ListView ItemsSource="{Binding Rows}" Grid.Row="1" x:Uid="{Binding CardID}" x:Name="ColumnsLV">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate >
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <TextBox Text="{Binding RowContent}" x:Name="AddContent" Visibility="Visible" IsEnabled="False" Width="150" Height="150" Grid.Row="0"/>
+                                                <Label Content="Клик для редактирования" Grid.Row="1" MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="AddColumnBttn" Height="20" Width="110" Content="Добавить колонку"/>
+        </StackPanel>
+    </Grid>
+</Page>

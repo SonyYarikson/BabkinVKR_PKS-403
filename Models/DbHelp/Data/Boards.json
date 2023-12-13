@@ -1,0 +1,20 @@
+[
+  {
+    "BoardID": "728b8a99-4b2f-4e78-b7da-1ce9f7269051",
+    "BoardName": "Board1",
+    "Privacy": "Public",
+    "UserID": "ddc32834-5a6d-42e1-af61-47ed9269a839"
+  },
+  {
+    "BoardID": "c8bca1c6-5d9b-4abe-bdfc-546d453299be",
+    "BoardName": "Board2",
+    "Privacy": "Private",
+    "UserID": "ddc32834-5a6d-42e1-af61-47ed9269a839"
+  },
+  {
+    "BoardID": "1a6002a8-78aa-4000-883b-a7c5ac2faf21",
+    "BoardName": "Board3",
+    "Privacy": "Public",
+    "UserID": "ddc32834-5a6d-42e1-af61-47ed9269a839"
+  }
+]

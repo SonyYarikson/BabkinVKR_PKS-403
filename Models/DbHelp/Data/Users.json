@@ -1,0 +1,20 @@
+[
+  {
+    "UserID": "ddc32834-5a6d-42e1-af61-47ed9269a839",
+    "Login": "admin",
+    "Password": "admin",
+    "RoleID": "383f3a8d-cef8-439b-8685-94f29e4d9c15"
+  },
+  {
+    "UserID": "0acff65f-d507-497c-810b-3ff954f92e53",
+    "Login": "user1",
+    "Password": "user1",
+    "RoleID": "fc492d2d-1740-4987-a660-d64d23d0d0ba"
+  },
+  {
+    "UserID": "a1357e7a-d1dc-453e-a8e7-3001d41f0e93",
+    "Login": "user2",
+    "Password": "user2",
+    "RoleID": "fc492d2d-1740-4987-a660-d64d23d0d0ba"
+  }
+]

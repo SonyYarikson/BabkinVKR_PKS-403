@@ -1,0 +1,18 @@
+﻿<Page x:Class="BabkinsDashBoard.Views.UserBoards"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BabkinsDashBoard.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UserBoards" Background="White">
+
+    <Grid>
+        <DataGrid x:Name="DgridUserBoards" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название доски" Binding="{Binding BoardName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
