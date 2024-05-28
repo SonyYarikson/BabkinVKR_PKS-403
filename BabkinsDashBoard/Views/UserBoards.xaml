@@ -12,7 +12,15 @@
         <DataGrid x:Name="DgridUserBoards" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название доски" Binding="{Binding BoardName}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="EditBoardBttn" Content="Редактировать" Click="EditBoardBttn_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Frame x:Name="UserFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>

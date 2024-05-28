@@ -1,4 +1,5 @@
-﻿using Models.DataContext;
+﻿using Models;
+using Models.DataContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,13 @@ namespace BabkinsDashBoard.Views
         private void initDG()
         {
             DgridUserBoards.ItemsSource = _dasboarddatacontext.Boards.Where(x => x.UserID == MainWindow.user.UserID).ToList();
+        }
+
+        private void EditBoardBttn_Click(object sender, RoutedEventArgs e)
+        {
+            Board board = (sender as Button).DataContext as Board;
+            EditBoard._context = board;
+            UserFrame.Navigate(new EditBoard(_dasboarddatacontext));
         }
     }
 }

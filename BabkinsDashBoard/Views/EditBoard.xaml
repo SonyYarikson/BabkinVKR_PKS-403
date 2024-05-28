@@ -26,10 +26,13 @@
                                     <RowDefinition Height="30"/>
                                     <RowDefinition/>
                                     <RowDefinition/>
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Text="{Binding CardName}" Grid.Row="0" x:Name="CardNametb"/>
-                                <Button x:Name="AddRow" Height="20" Width="150" Content="+" Grid.Row="2" Click="AddRow_Click"/>
-                                <ListView ItemsSource="{Binding Rows}" Grid.Row="1" x:Uid="{Binding CardID}" x:Name="ColumnsLV">
+                                <Label Content="{Binding CardID}" Visibility="Collapsed"/>
+                                <TextBox Text="{Binding CardName}" Grid.Row="0" x:Name="CardNametb" Visibility="Visible" IsEnabled="False"/>
+                                <Label Content="Клик для редактирования" Grid.Row="1" MouseLeftButtonDown="CardNametb_MouseLeftButtonDown"/>
+                                <Button x:Name="AddRow" Height="20" Width="150" Content="+" Grid.Row="3" Click="AddRow_Click"/>
+                                <ListView ItemsSource="{Binding Rows}" Grid.Row="2" x:Name="ColumnsLV">
                                     <ListView.ItemTemplate>
                                         <DataTemplate >
                                             <Grid>
@@ -39,6 +42,7 @@
                                                 </Grid.RowDefinitions>
                                                 <TextBox Text="{Binding RowContent}" x:Name="AddContent" Visibility="Visible" IsEnabled="False" Width="150" Height="150" Grid.Row="0"/>
                                                 <Label Content="Клик для редактирования" Grid.Row="1" MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
+                                                <Label Content="{Binding CardId}" Visibility="Collapsed"/>
                                             </Grid>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
@@ -50,7 +54,7 @@
             </ScrollViewer>
         </Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="AddColumnBttn" Height="20" Width="110" Content="Добавить колонку"/>
+            <Button x:Name="AddColumnBttn" Height="20" Width="110" Content="Добавить колонку" Click="AddColumnBttn_Click"/>
         </StackPanel>
     </Grid>
 </Page>
