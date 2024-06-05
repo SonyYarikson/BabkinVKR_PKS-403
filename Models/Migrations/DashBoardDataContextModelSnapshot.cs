@@ -78,9 +78,9 @@ namespace Models.Migrations
                     b.Property<Guid>("CardId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("RowContent")
+                    b.Property<byte[]>("RowContent")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("bytea");
 
                     b.Property<string>("RowType")
                         .IsRequired()

@@ -1,21 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Update.Internal;
+using Microsoft.Win32;
 using Models;
 using Models.DataContext;
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 
 namespace BabkinsDashBoard.Views
@@ -32,24 +25,13 @@ namespace BabkinsDashBoard.Views
         public EditBoard(DashBoardDataContext context)
         {
             InitializeComponent();
-            _boardDataContext = context;
+            //_boardDataContext = context;
             
         }
 
         private async void AddRow_Click(object sender, RoutedEventArgs e)
         {
-            var card = (sender as Button).DataContext as Card;
-            if (card != null)
-            {
-                var currentrow = new Row
-                {
-                    CardId = card.CardID,
-                    RowType = "text",
-                    RowContent = ""
-                };
-                _boardDataContext.Rows.Add(currentrow);
-                await _boardDataContext.SaveChangesAsync();
-            }
+            
         }
 
         private async void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -62,11 +44,11 @@ namespace BabkinsDashBoard.Views
                 var rowIdLabel = parent.Children[2] as Label;
                 if (rowIdLabel != null)
                 {
-                    var cardId = Guid.Parse(rowIdLabel.Content.ToString());
-                    var currentrow = _boardDataContext.Rows.FirstOrDefault(r => r.CardId == cardId);
+                    var rowId = Guid.Parse(rowIdLabel.Content.ToString());
+                    var currentrow = _boardDataContext.Rows.FirstOrDefault(r => r.RowID == rowId);
                     if (currentrow != null)
                     {
-                        currentrow.RowContent = tb.Text;
+                        currentrow.RowContent =Encoding.ASCII.GetBytes(tb.Text);
                         _boardDataContext.Rows.Update(currentrow);
                         await _boardDataContext.SaveChangesAsync();
                     }
@@ -119,6 +101,40 @@ namespace BabkinsDashBoard.Views
                 }
                 KanbanBoardItemsControl.ItemsSource = cards;
             }
+        }
+
+        private void AddPicture_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Ваше Изображение|*.jpg;*.jpeg;*.png";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string imagePath = openFileDialog.FileName;
+                byte[] imageData = File.ReadAllBytes(imagePath);
+
+                //song.Cover = imageData;
+            }
+        }
+
+        private async void AddText_Click(object sender, RoutedEventArgs e)
+        {
+            var card = (sender as Button).DataContext as Card;
+            if (card != null)
+            {
+                var currentrow = new Row
+                {
+                    CardId = card.CardID,
+                    RowType = "text",
+                    RowContent = {}
+                };
+                _boardDataContext.Rows.Add(currentrow);
+                await _boardDataContext.SaveChangesAsync();
+            }
+        }
+
+        private void AddList_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

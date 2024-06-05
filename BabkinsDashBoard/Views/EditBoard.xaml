@@ -5,10 +5,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BabkinsDashBoard.Views"
+      xmlns:converters="clr-namespace:BabkinsDashBoard.tools"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EditBoard" Background="White" IsVisibleChanged="Page_IsVisibleChanged">
 
+    <Page.Resources>
+        <converters:ByteArrayToStringConverter x:Key="ByteArrayToStringConverter"/>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -27,11 +31,18 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <Label Content="{Binding CardID}" Visibility="Collapsed"/>
                                 <TextBox Text="{Binding CardName}" Grid.Row="0" x:Name="CardNametb" Visibility="Visible" IsEnabled="False"/>
                                 <Label Content="Клик для редактирования" Grid.Row="1" MouseLeftButtonDown="CardNametb_MouseLeftButtonDown"/>
                                 <Button x:Name="AddRow" Height="20" Width="150" Content="+" Grid.Row="3" Click="AddRow_Click"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" x:Name="RowTypeSP">
+                                <Button x:Name="AddPicture" Content="🖼️" Grid.Row="4" Click="AddPicture_Click" HorizontalAlignment="Center"/>
+                                <Button x:Name="AddText" Content="🔠" Grid.Row="4" Click="AddText_Click" HorizontalAlignment="Center"/>
+                                <Button x:Name="AddList" Content="📋" Grid.Row="4" Click="AddList_Click" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                
                                 <ListView ItemsSource="{Binding Rows}" Grid.Row="2" x:Name="ColumnsLV">
                                     <ListView.ItemTemplate>
                                         <DataTemplate >
@@ -40,9 +51,9 @@
                                                     <RowDefinition/>
                                                     <RowDefinition/>
                                                 </Grid.RowDefinitions>
-                                                <TextBox Text="{Binding RowContent}" x:Name="AddContent" Visibility="Visible" IsEnabled="False" Width="150" Height="150" Grid.Row="0"/>
+                                                <TextBox Text="{Binding RowContent, Converter={StaticResource ByteArrayToStringConverter}}" x:Name="AddContent" Visibility="Visible" IsEnabled="False" Width="150" Height="150" Grid.Row="0"/>
                                                 <Label Content="Клик для редактирования" Grid.Row="1" MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
-                                                <Label Content="{Binding CardId}" Visibility="Collapsed"/>
+                                                <Label Content="{Binding RowID}" Visibility="Collapsed"/>
                                             </Grid>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>

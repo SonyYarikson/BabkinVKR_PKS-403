@@ -89,7 +89,7 @@ namespace Models.Migrations
                 {
                     RowID = table.Column<Guid>(type: "uuid", nullable: false),
                     RowType = table.Column<string>(type: "text", nullable: false),
-                    RowContent = table.Column<string>(type: "text", nullable: false),
+                    RowContent = table.Column<byte[]>(type: "bytea", nullable: false),
                     CardId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>

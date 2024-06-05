@@ -8,6 +8,8 @@ namespace Models.DbHelp
 {
     using Models.DataContext;
     using System.Text.Json;
+    using System.Text.Json.Serialization;
+
     /// <summary>
     /// class for initializing database with data
     /// </summary>
@@ -83,6 +85,13 @@ namespace Models.DbHelp
             {
                 string path = Path.Combine(_path, "Rows.json");
                 string json = File.ReadAllText(path);
+                var options = new JsonSerializerOptions
+                {
+                    Converters =
+                {
+                    new ByteArrayConverter()
+                }
+                };
                 var positions = JsonSerializer.Deserialize<List<Row>>(json);
 
                 if (positions == null)
@@ -95,6 +104,19 @@ namespace Models.DbHelp
             
             _dashBoardDataContext.SaveChanges();
             return 0;
+        }
+        public class ByteArrayConverter : JsonConverter<byte[]>
+        {
+            public override byte[] Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                string base64 = reader.GetString();
+                return Convert.FromBase64String(base64);
+            }
+
+            public override void Write(Utf8JsonWriter writer, byte[] value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(Convert.ToBase64String(value));
+            }
         }
     }
 }
