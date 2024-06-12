@@ -5,9 +5,15 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BabkinsDashBoard", "BabkinsDashBoard\BabkinsDashBoard.csproj", "{9A2A4B85-E92D-4A95-972D-2D091F39A1FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{01147539-857A-43C5-AAC9-03D2313F90F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{01147539-857A-43C5-AAC9-03D2313F90F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{0D02AB6A-AD5E-456C-814F-F39307FE45E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "TestProject1\TestProject1.csproj", "{0D02AB6A-AD5E-456C-814F-F39307FE45E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabkinsDashBoardPlugins", "BabkinsDashBoardPlugins\BabkinsDashBoardPlugins.csproj", "{C70206D6-4908-4D7F-852A-F65E8286AAFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stringlenghttest", "Stringlenghttest\Stringlenghttest.csproj", "{70C3666F-2719-429D-B914-B6735CE2D75C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginLoaderLib", "PluginLoaderLib\PluginLoaderLib.csproj", "{0613450F-B632-43AC-B275-9BBA2A1AAAA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +33,18 @@ Global
 		{0D02AB6A-AD5E-456C-814F-F39307FE45E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D02AB6A-AD5E-456C-814F-F39307FE45E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D02AB6A-AD5E-456C-814F-F39307FE45E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C70206D6-4908-4D7F-852A-F65E8286AAFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C70206D6-4908-4D7F-852A-F65E8286AAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C70206D6-4908-4D7F-852A-F65E8286AAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C70206D6-4908-4D7F-852A-F65E8286AAFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70C3666F-2719-429D-B914-B6735CE2D75C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70C3666F-2719-429D-B914-B6735CE2D75C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70C3666F-2719-429D-B914-B6735CE2D75C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70C3666F-2719-429D-B914-B6735CE2D75C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0613450F-B632-43AC-B275-9BBA2A1AAAA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0613450F-B632-43AC-B275-9BBA2A1AAAA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0613450F-B632-43AC-B275-9BBA2A1AAAA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0613450F-B632-43AC-B275-9BBA2A1AAAA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

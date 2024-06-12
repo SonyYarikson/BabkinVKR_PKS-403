@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MaterialDesignThemes.Wpf;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using Models;
 using Models.DataContext;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Card = Models.Card;
 
 
 namespace BabkinsDashBoard.Views
@@ -21,11 +23,12 @@ namespace BabkinsDashBoard.Views
         public static Board _context;
         private static DashBoardDataContext _boardDataContext;
         private DbContextOptions<DashBoardDataContext> options;
+        private byte[] image;
         
         public EditBoard(DashBoardDataContext context)
         {
             InitializeComponent();
-            //_boardDataContext = context;
+            _boardDataContext = context;
             
         }
 
@@ -84,6 +87,7 @@ namespace BabkinsDashBoard.Views
                         card.CardName = tb.Text;
                         _boardDataContext.Cards.Update(card);
                         _boardDataContext.SaveChanges();
+                        
                     }
                 }
             }
@@ -100,20 +104,28 @@ namespace BabkinsDashBoard.Views
                     card.Rows = _boardDataContext.Rows.AsNoTracking().Where(c => c.CardId == card.CardID).ToList();
                 }
                 KanbanBoardItemsControl.ItemsSource = cards;
+                
             }
         }
 
-        private void AddPicture_Click(object sender, RoutedEventArgs e)
+        private async void AddPicture_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Ваше Изображение|*.jpg;*.jpeg;*.png";
+            var card = (sender as Button).DataContext as Card;
             if (openFileDialog.ShowDialog() == true)
             {
                 string imagePath = openFileDialog.FileName;
-                byte[] imageData = File.ReadAllBytes(imagePath);
-
-                //song.Cover = imageData;
+                image = File.ReadAllBytes(imagePath);
             }
+            var currentrow = new Row
+            {
+                CardId = card.CardID,
+                RowType = "picture",
+                RowContent = image
+            };
+            _boardDataContext.Rows.Add(currentrow);
+            await _boardDataContext.SaveChangesAsync();
         }
 
         private async void AddText_Click(object sender, RoutedEventArgs e)
@@ -124,8 +136,8 @@ namespace BabkinsDashBoard.Views
                 var currentrow = new Row
                 {
                     CardId = card.CardID,
-                    RowType = "text",
-                    RowContent = {}
+                    RowType = "Text",
+                    RowContent = Encoding.ASCII.GetBytes("")
                 };
                 _boardDataContext.Rows.Add(currentrow);
                 await _boardDataContext.SaveChangesAsync();

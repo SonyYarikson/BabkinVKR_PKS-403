@@ -14,6 +14,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\PluginLoaderLib\PluginLoaderLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="plugins\" />
   </ItemGroup>
 
 </Project>

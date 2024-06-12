@@ -38,5 +38,10 @@ namespace BabkinsDashBoard.Views
         {
             StartPageFrame.Navigate(new AllBoards(_dashboardDataContext));
         }
+
+        private void PluginsBttn_Click(object sender, RoutedEventArgs e)
+        {
+            StartPageFrame.Navigate(new Page1(_dashboardDataContext));
+        }
     }
 }

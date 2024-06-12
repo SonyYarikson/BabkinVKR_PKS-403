@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace ApplicationKursach
+namespace BabkinsDashBoard.tools
 {
     public class NullToImageConverter : IValueConverter
     {

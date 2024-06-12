@@ -12,7 +12,40 @@
 
     <Page.Resources>
         <converters:ByteArrayToStringConverter x:Key="ByteArrayToStringConverter"/>
+        <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+        <converters:NullToImageConverter x:Key="NullToImageConverter"/>
+        <DataTemplate x:Key="PictureTemplate">
+            <StackPanel Orientation="Vertical">
+            <Image Source="{Binding RowContent, Converter={StaticResource NullToImageConverter}}" Width="100" Height="100" Stretch="UniformToFill"/>
+            <Label Content="пися попа чилееен"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="TextTemplate">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding RowContent, Converter={StaticResource ByteArrayToStringConverter}}" IsEnabled="False" Width="150" Height="150" Grid.Row="0"/>
+                <Label Content="Клик для редактирования" Grid.Row="2" MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
+                <Label Content="{Binding RowID}" Visibility="Collapsed"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RowTemplate">
+            <ContentControl Content="{Binding}">
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RowType}" Value="picture">
+                                <Setter Property="ContentTemplate" Value="{StaticResource PictureTemplate}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding RowType}" Value="Text">
+                                <Setter Property="ContentTemplate" Value="{StaticResource TextTemplate}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
+        </DataTemplate>
     </Page.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -20,9 +53,8 @@
             </RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
-           
             <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                <ItemsControl x:Name="KanbanBoardItemsControl" >
+                <ItemsControl x:Name="KanbanBoardItemsControl">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -38,26 +70,12 @@
                                 <Label Content="Клик для редактирования" Grid.Row="1" MouseLeftButtonDown="CardNametb_MouseLeftButtonDown"/>
                                 <Button x:Name="AddRow" Height="20" Width="150" Content="+" Grid.Row="3" Click="AddRow_Click"/>
                                 <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" x:Name="RowTypeSP">
-                                <Button x:Name="AddPicture" Content="🖼️" Grid.Row="4" Click="AddPicture_Click" HorizontalAlignment="Center"/>
-                                <Button x:Name="AddText" Content="🔠" Grid.Row="4" Click="AddText_Click" HorizontalAlignment="Center"/>
-                                <Button x:Name="AddList" Content="📋" Grid.Row="4" Click="AddList_Click" HorizontalAlignment="Center"/>
+                                    <Button x:Name="AddPicture" Content="🖼️" Grid.Row="4" Click="AddPicture_Click" HorizontalAlignment="Center"/>
+                                    <Button x:Name="AddText" Content="🔠" Grid.Row="4" Click="AddText_Click" HorizontalAlignment="Center"/>
+                                    <Button x:Name="AddList" Content="📋" Grid.Row="4" Click="AddList_Click" HorizontalAlignment="Center"/>
                                 </StackPanel>
-                                
-                                <ListView ItemsSource="{Binding Rows}" Grid.Row="2" x:Name="ColumnsLV">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate >
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition/>
-                                                    <RowDefinition/>
-                                                </Grid.RowDefinitions>
-                                                <TextBox Text="{Binding RowContent, Converter={StaticResource ByteArrayToStringConverter}}" x:Name="AddContent" Visibility="Visible" IsEnabled="False" Width="150" Height="150" Grid.Row="0"/>
-                                                <Label Content="Клик для редактирования" Grid.Row="1" MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
-                                                <Label Content="{Binding RowID}" Visibility="Collapsed"/>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+
+                                <ListView ItemsSource="{Binding Rows}" Grid.Row="2" x:Name="ColumnsLV" ItemTemplate="{StaticResource RowTemplate}"/>
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

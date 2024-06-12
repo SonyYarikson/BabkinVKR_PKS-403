@@ -16,6 +16,7 @@
         <StackPanel Orientation="Horizontal">
             <Button x:Name="UserBoardsBttn" Grid.Row="0" Width="200" Height="50" Click="UserBoardsBttn_Click" Content="Ваши доски"/>
             <Button x:Name="AllBoardsBttn" Grid.Row="0" Width="200" Height="50" Click="AllBoardsBttn_Click" Content="Доски других пользователей"/>
+            <Button x:Name="PluginsBttn" Grid.Row="0" Width="200" Height="50" Click="PluginsBttn_Click"  Content="Плагины"/>
         </StackPanel>
         <Frame x:Name="StartPageFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
     </Grid>
